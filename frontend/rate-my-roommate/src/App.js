@@ -1,24 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
+import FirstComponent, {SecondComponent} from './components/learning-examples/FirstComponent';
+import ThirdComponent from './components/learning-examples/ThirdComponent';
+import Counter from './components/counter/Counter';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Counter />
+    </div>
+  );
+}
+
+
+// section2 - leaning basic components feature 
+function LearningComponents() {
+  return (
+    <div className="LearningComponents">
+      This is App
+      <FirstComponent />
+      <SecondComponent />
+      <ThirdComponent />
     </div>
   );
 }
