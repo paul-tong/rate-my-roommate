@@ -3,12 +3,15 @@ import logo from './logo.svg';
 import FirstComponent, {SecondComponent} from './components/learning-examples/FirstComponent';
 import ThirdComponent from './components/learning-examples/ThirdComponent';
 import Counter from './components/counter/Counter';
+import TodoApp from './components/todo/TodoApp';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Counter />
+      {/*<Counter />*/}
+      <TodoApp />
     </div>
   );
 }
