@@ -1,13 +1,37 @@
 import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class TodoApp extends Component {
     render() {
         return (
             <div className="TodoApp">
-                <LoginComponent />
+                <Router>
+                    <Switch>
+                        <Route path='/' exact component={LoginComponent} />
+                        <Route path='/login' component={LoginComponent} />
+                        <Route path='/welcome/:name' component={WelcomeComponent} />
+                        <Route component={ErrorComponent} />
+                    </Switch>
+                </Router>
+                {/*<LoginComponent />
+                <WelcomeComponent />*/}
             </div>
         );
     }
+}
+
+class WelcomeComponent extends Component {
+    render() {
+        return(
+            <div>Welcome {this.props.match.params.name}</div>
+        );
+    }
+}
+
+function ErrorComponent() {
+    return (
+        <div>I don't know where to go</div>
+    );
 }
 
 class LoginComponent extends Component {
@@ -32,8 +56,11 @@ class LoginComponent extends Component {
         console.log(this.state);
         if (this.state.username === 'tong' && this.state.password === 'dummy') {
             console.log("success");
-            this.setState({showLoginSuccessMessage: true})
-            this.setState({hasLoginFailed: false})
+
+            // go to a specific route, pass parameter to the route
+            this.props.history.push(`/welcome/${this.state.username}`)
+            //this.setState({showLoginSuccessMessage: true})
+            //this.setState({hasLoginFailed: false})
         }
         else {
             console.log("filed");
@@ -95,4 +122,5 @@ function ShowLoginSuccessMessage(props) {
 
     return null
 }
+
 export default TodoApp;
