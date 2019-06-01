@@ -16,18 +16,37 @@ class LoginComponent extends Component {
 
         this.state = {
             username: 'tong',
-            password: ''
+            password: '',
+            hasLoginFailed: false,
+            showLoginSuccessMessage: false
         }
 
         // this.handlelUsernameChange= this.handlelUsernameChange.bind(this);
         // this.handlelPasswordChange= this.handlelPasswordChange.bind(this);
-        this.handelChange= this.handelChange.bind(this);
+        this.handelChange = this.handelChange.bind(this);
+        this.loginClicked = this.loginClicked.bind(this);
 
     }
     
+    loginClicked() {
+        console.log(this.state);
+        if (this.state.username === 'tong' && this.state.password === 'dummy') {
+            console.log("success");
+            this.setState({showLoginSuccessMessage: true})
+            this.setState({hasLoginFailed: false})
+        }
+        else {
+            console.log("filed");
+            this.setState({showLoginSuccessMessage: false})
+            this.setState({hasLoginFailed: true})
+        }
+    }
+
+
+
     // handle multiple event from different elements
     handelChange(event) {
-        console.log(event.target.name);
+        // console.log(event.target.name);
 
         // update state of different field base on the name of event target
         // key in struct should be constant, if want to use variable, need to use []
@@ -38,7 +57,7 @@ class LoginComponent extends Component {
     }
 
     handlelPasswordChange(event) {
-        console.log(event.target.name);
+        // console.log(event.target.name);
 
         this.setState({
             password: event.target.value
@@ -48,12 +67,32 @@ class LoginComponent extends Component {
     render() {
         return(
             <div>
+            {/*<ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+            <ShowLoginSuccessMessage showLoginSuccessMessage={this.state.showLoginSuccessMessage}/>*/}
+            {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
+            {this.state.showLoginSuccessMessage && <div>Login Success</div>}
             User Name: <input type="text" name="username" value={this.state.username} onChange={this.handelChange} />
             Password: <input type="password" name="password" value={this.state.password} onChange={this.handelChange} />
-            <button>Login</button>
+            <button onClick={this.loginClicked}>Login</button>
             </div>
         );
     }
 }
 
+function ShowInvalidCredentials(props) {
+    if (props.hasLoginFailed) {
+        return <div>Invalid Credentials</div>
+    }
+
+    return null
+
+}
+
+function ShowLoginSuccessMessage(props) {
+    if (props.showLoginSuccessMessage) {
+        return <div>Login Success</div>
+    }
+
+    return null
+}
 export default TodoApp;
