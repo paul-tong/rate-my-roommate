@@ -4,8 +4,8 @@ import FirstComponent, {SecondComponent} from './components/learning-examples/Fi
 import ThirdComponent from './components/learning-examples/ThirdComponent';
 import Counter from './components/counter/Counter';
 import TodoApp from './components/todo/TodoApp';
-
 import './App.css';
+import './bootstrap.css';
 
 function App() {
   return (
